@@ -15,6 +15,14 @@ En el dockerfile vamos a meter como archivo entrypoints una validación por si e
 
 La aplicación rails vamos a dockerizarla junto una base datos Postgres, vamos a crear un contenedor a partir de una imagen ya creada (postgres:12.1)
 
+Y vamos a crear un contenedor de RabbitMQ donde vamos a consumir una cola 'product'. Y tendremos un 
+
+La cola 'product' la va producir una aplicación rails 2.5.1 con base de datos MongoDB:
+https://github.com/fjfdepedro/rails_mongo
+Cada vez que se guarde en base de datos, encolaremos en la queue 'product' de RabbitMQ un json del producto creado.
+
+Queremos es esta manera simular el tener dos microservicios.
+
 Utilizamos variables de entorno para los parametros de conexión sa la base de datos Postgres (archivo .env)
 
 ## Docker compose
