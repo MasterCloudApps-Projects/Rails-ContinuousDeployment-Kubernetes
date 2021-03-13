@@ -1,0 +1,77 @@
+version: "3.3"
+services:
+  rails_mongo:
+    restart: always
+    image: rails_mongo:2
+    command: sh -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+      - rabbitmq
+    depends_on:
+      - mongodb
+      - rabbitmq
+  mongodb:
+    image: "mongo:4.2.8"
+    container_name: mongodb
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+      - MONGO_INITDB_DATABASE=${DATABASE}
+      - MONGODB_USER=${USERNAME}
+      - MONGODB_PASS=${PASS}
+    volumes:
+      - "mongodb:/var/lib/mongodb/data"
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    restart: always
+    image: rabbitmq:3.8.2-management
+    expose:
+      - 5672
+      - 15672
+    ports:
+      - 5672:5672
+      - 15672:15672
+  rails_postgres:
+    image: rails_postgres:5
+    command: bash -c "rm -f tmp/pids/server.pid && yarn install --check-files && bundle exec rails db:migrate RAILS_ENV=production && bundle exec rails s -p 3002 -b '0.0.0.0'"
+    environment:
+      - PORT=3002
+    ports:
+      - "3002:3002"
+    depends_on:
+      - postgres
+      - rabbitmq
+    links:
+      - postgres
+      - rabbitmq
+    environment:
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      PGHOST: ${PGHOST}
+      PGUSER: ${PGUSER}
+  postgres:
+    restart: always
+    image: postgres
+    container_name: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_USER: ${DATABASE_NAME}
+      POSTGRES_PASSWORD: ${DATABASE_USER}
+      POSTGRES_DB: ${DATABASE_DB}
+
+volumes:
+  mongodb:
+  rabbitmq:
+  db_data:
