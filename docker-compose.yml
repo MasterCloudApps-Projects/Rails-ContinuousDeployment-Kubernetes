@@ -1,0 +1,46 @@
+version: "3.3"
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && yarn install --check-files && bundle exec rails && bundle exec rails s -p 3002 -b '0.0.0.0'"
+    volumes:
+      - .:/rails_postgres
+    ports:
+      - "3002:3002"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      DATABASE_NAME: postgres
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      PGHOST: db
+      PGUSER: postgres
+  rabbitmq:
+    image: rabbitmq
+    command: rabbitmq:3.8.2-management
+    expose:
+      - 5672
+      - 15672
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 1
+    ports:
+        - 5672:5672
+        - 15672:15672
+volumes:
+  db_data:
+  rabbitmq:
