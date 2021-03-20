@@ -30,6 +30,8 @@ Utilizamos variables de entorno para los parametros de conexión sa la base de d
 ## Docker compose
 
 En el docker compose vamos a crear los contenedores de mi aplicación Rails y una base de datos Postgres, ademas de crear las conexiones entre ellos, vamos a crear los volumenes necesarios, y habilitar los puertos.
+Este desarrollo está en el repositorio:
+https://github.com/fjfdepedro/docker-compose-images
 
 ## Docker hub
 
