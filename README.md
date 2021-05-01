@@ -3,6 +3,10 @@
 Para tener una aplicación rails dockerizada hay varias imagenes de las cuales podemos partir para crear nuestra propia imagen con nuestra aplicación.
 Las hay desde una imagen con el servidor de aplicaciones y servidor web ya integrado (passenger+nginx) o se puede partir de una imagen con la versión de Ruby deseada, como puede ser en mi aplicación con Ruby 2.7.0 y añadir en la aplicación rails un servidor de aplicaciones, en mi caso uso Puma.
 
+En este repositorio se va a encontrar la aplicación rals con base de datos postgres. Que nos servirá junto con la aplicación rails + mongo (https://github.com/fjfdepedro/rails_mongo) y con la integración con RabbitMq para poder simular una aplicación con Microservicios y de esta manera poder desarrollar CD en Kubernetes con FluxCD, Flagger e Istio.
+
+En este repositorio vamos a encontrar:
+
 ## Dockerfile
 
 La diferencia entre dockerizar una aplicación rails para entorno de desarrollo o de producción se basa en las variables de entorno que declaremos para nuestra aplicación:
