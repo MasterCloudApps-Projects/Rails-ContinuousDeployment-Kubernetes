@@ -7,7 +7,9 @@ En este repositorio se va a encontrar la aplicación rals con base de datos post
 
 En este repositorio vamos a encontrar:
 
-## Dockerfile
+# Aplicación Ruby on Rails con base de datos Postgres
+
+## Dockerfile de la aplicación Rails 6.0.3 con Ruby 2.7.0
 
 La diferencia entre dockerizar una aplicación rails para entorno de desarrollo o de producción se basa en las variables de entorno que declaremos para nuestra aplicación:
 
@@ -31,15 +33,17 @@ Queremos es esta manera simular el tener dos microservicios.
 
 Utilizamos variables de entorno para los parametros de conexión sa la base de datos Postgres (archivo .env)
 
-## Docker compose
+## Docker compose de la aplicación Rails 6.0.3 con Ruby 2.7.0, Postgres y RabbitMQ
 
 En el docker compose vamos a crear los contenedores de mi aplicación Rails y una base de datos Postgres, ademas de crear las conexiones entre ellos, vamos a crear los volumenes necesarios, y habilitar los puertos.
-Este desarrollo está en el repositorio:
+
+En el repositorio
 https://github.com/fjfdepedro/docker-compose-images
+Se encuentran los manifiestos de Docker compose para poder desplegar las dos aplicaciones Rails con las bases de datos MongoDB y Postgres, y RabbitMQ.
 
 ## Docker hub
 
-Se sube la imagen a docjer hub y a partir de esa imagen vamos crear los ficheros de Helm necesarios para deplegar el servicio de nuestra aplicación a nuestro nodo local de kubernetes
+Se sube la imagen de nuestra aplicación Rails a Docher hub y a partir de esa imagen vamos crear los ficheros de Helm necesarios para deplegar el microservicio de nuestra aplicación a nuestro nodo local de kubernetes
 
 https://hub.docker.com/repository/docker/fjfdepedro/rails_postgres
 
@@ -48,4 +52,5 @@ https://hub.docker.com/repository/docker/fjfdepedro/rails_mongo
 
 
 ## Helm3
-Creo las plantillas para un namespace determinado con los deployments de la aplicación rails y de la base de datos postgres.
+Creo las plantillas para un namespace determinado con los deployments de la aplicación Rails y de la base de datos Postgres, de la aplicación Rails con MongoDB
+En el repositorio
