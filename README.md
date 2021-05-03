@@ -52,4 +52,4 @@ https://hub.docker.com/repository/docker/fjfdepedro/rails_mongo
 
 ## Helm3
 Creo las plantillas para un namespace determinado con los deployments de la aplicación Rails y de la base de datos Postgres, de la aplicación Rails con MongoDB
-En el repositorio
+En el repositorio https://github.com/fjfdepedro/rails_chart_helm3
