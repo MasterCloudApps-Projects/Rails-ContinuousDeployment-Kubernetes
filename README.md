@@ -5,6 +5,9 @@ Las hay desde una imagen con el servidor de aplicaciones y servidor web ya integ
 
 En este repositorio se va a encontrar la aplicación rals con base de datos postgres. Que nos servirá junto con la aplicación rails + mongo (https://github.com/fjfdepedro/rails_mongo) y con la integración con RabbitMq para poder simular una aplicación con Microservicios y de esta manera poder desarrollar CD en Kubernetes con FluxCD, Flagger e Istio.
 
+file:///home/fjfdepedro/Descargas/proyectorails.png![image](https://user-images.githubusercontent.com/3374244/119972214-3d644f00-bfb2-11eb-8d0b-8245ab71b2d5.png)
+
+
 En este repositorio vamos a encontrar:
 
 # Aplicación Ruby on Rails con base de datos Postgres
