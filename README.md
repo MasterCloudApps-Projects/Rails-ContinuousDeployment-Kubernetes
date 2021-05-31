@@ -60,4 +60,4 @@ En el repositorio https://github.com/fjfdepedro/rails_chart_helm3
 
 ## Memoría del TFM y presentación
 
-Se ha metido el documento con el TFM y la presentación en Power point en un archivo comprimido en la carpeta /docs/
+El archivo comprimido con el TFM y la presentación en Power point se encuentra en la carpeta /docs/
