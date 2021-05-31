@@ -56,3 +56,7 @@ https://hub.docker.com/repository/docker/fjfdepedro/rails_mongo
 ## Helm 3
 Se crean las plantillas para un namespace determinado con los deployments de la aplicación Rails y de la base de datos Postgres, de la aplicación Rails con MongoDB
 En el repositorio https://github.com/fjfdepedro/rails_chart_helm3
+
+# Memoría del TFM
+
+Se ha metido el documento con el TFM y la presentación en Power point en un archivo comprimido en la carpeta /docs/
